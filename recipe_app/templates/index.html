@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Collection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe Collection</h1>
+        
+        <!-- Search Filters -->
+        <div class="filters">
+            <input type="text" id="titleFilter" placeholder="Search by title...">
+            <input type="text" id="cuisineFilter" placeholder="Filter by cuisine...">
+            <input type="text" id="ratingFilter" placeholder="Rating (e.g., >=4.5)">
+            <input type="text" id="caloriesFilter" placeholder="Calories (e.g., <=400)">
+            <input type="text" id="timeFilter" placeholder="Total time (e.g., <=60)">
+            <button onclick="applyFilters()">Search</button>
+            <button onclick="clearFilters()">Clear</button>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-controls">
+            <label for="perPage">Results per page:</label>
+            <select id="perPage" onchange="changePerPage()">
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+            </select>
+            
+            <div class="pagination">
+                <button id="prevPage" onclick="changePage(-1)">Previous</button>
+                <span id="pageInfo">Page 1 of 1</span>
+                <button id="nextPage" onclick="changePage(1)">Next</button>
+            </div>
+        </div>
+
+        <!-- Recipes Table -->
+        <div class="table-container">
+            <table id="recipesTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Cuisine</th>
+                        <th>Rating</th>
+                        <th>Total Time</th>
+                        <th>Serves</th>
+                    </tr>
+                </thead>
+                <tbody id="recipesBody">
+                    <!-- Data will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="hidden">
+            <p>No recipes found matching your criteria.</p>
+        </div>
+    </div>
+
+    <!-- Recipe Detail Drawer -->
+    <div id="detailDrawer" class="drawer">
+        <div class="drawer-content">
+            <span class="close-btn" onclick="closeDrawer()">&times;</span>
+            <div id="drawerContent">
+                <!-- Detail content will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

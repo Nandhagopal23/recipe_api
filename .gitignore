@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+recipes.db
+.env
+/.vscode/
+.DS_Store
+venv/
+*.log
+*.sqlite3
+node_modules/

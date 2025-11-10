@@ -1,0 +1,9 @@
+flask==2.3.3
+flask-sqlalchemy==3.0.5
+# psycopg2-binary is required to connect to PostgreSQL. Keep it if you plan to
+# run the app against a local Postgres instance. It may require a C build
+# environment on some systems; on Windows use the binary wheel (psycopg2-binary).
+psycopg2-binary==2.9.7
+# Database migrations
+Flask-Migrate==4.0.4
+python-dotenv==1.0.0
