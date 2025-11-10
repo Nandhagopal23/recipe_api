@@ -1,15 +1,12 @@
 # Recipe API
 
+[![CI](https://github.com/Nandhagopal23/recipe_api/actions/workflows/python-tests.yml/badge.svg)](https://github.com/Nandhagopal23/recipe_api/actions/workflows/python-tests.yml)
+
 This repository contains the Recipe API: a small Flask application that
 parses recipe data from a JSON file, stores it in a SQL database, and
 exposes REST endpoints for listing and searching recipes.
 
 Quick links
-
-- Code: root of repo
-- App module: `recipe_app/` (contains app, models, data parser, and templates)
-- Tests: `recipe_app/tests/`
-- Migrations: `migrations/`
 
 Quickstart (SQLite local)
 
@@ -75,9 +72,12 @@ Docker image to run tests inside the container. See `.github/workflows/python-te
 
 Notes
 
-- Keep secrets out of the repository. Use `.env.example` as a template and add `.env` to `.gitignore`.
-- If you plan to deploy, consider using PostgreSQL (set `DATABASE_URL`) and adding JSONB indexes for nutrient queries.
-
 Contributions
 
 See `CONTRIBUTING.md` for guidelines.
+
+---
+
+Project status
+
+This project is in a stable state for the assessment: tests pass, CI runs, a Docker image can be built, and basic frontend + API are implemented. If you'd like to continue, we can add more features, tests, or deployment steps later.
