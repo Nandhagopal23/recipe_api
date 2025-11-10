@@ -30,6 +30,12 @@ else:
 def index():
     return render_template('index.html')
 
+
+@app.route('/health')
+def health():
+    # Simple health check for containers and CI smoke-tests
+    return jsonify({'status': 'ok'}), 200
+
 # API Endpoint 1: Get all recipes (paginated and sorted by rating)
 @app.route('/api/recipes', methods=['GET'])
 def get_recipes():

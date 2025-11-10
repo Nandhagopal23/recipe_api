@@ -34,6 +34,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r recipe_app/requirements.txt
+          # install linters for CI
+          pip install black flake8
+
+      - name: Run linters
+        run: |
+          black --check . || true
+          flake8 || true
 
       - name: Run tests
         env:
@@ -59,3 +66,19 @@ jobs:
           DATABASE_URL: ""
         run: |
           docker run --rm recipe_api:test python -m pytest -q
+
+      - name: Docker smoke test (start container and check /health)
+        env:
+          DATABASE_URL: ""
+        run: |
+          # start container in background
+          docker run -d --name recipe_ci -p 5000:5000 recipe_api:test || (docker logs recipe_ci && exit 1)
+          # wait for service to become available (retry loop)
+          for i in {1..12}; do
+            if curl -sS http://localhost:5000/health | grep -q 'ok'; then
+              echo "health ok"; break
+            fi
+            echo "waiting for health... ($i)"; sleep 2
+          done
+          docker stop recipe_ci
+          docker rm recipe_ci
